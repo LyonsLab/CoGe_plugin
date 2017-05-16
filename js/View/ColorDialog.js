@@ -32,7 +32,7 @@ return declare( ActionBarDialog,
 
     _fillActionBar: function( actionBar ) {
         var self = this;
- 
+
         if (this.items.length == 1)
             domConstruct.place(domConstruct.toDom('<div style="margin-bottom:10px;">' + this.items[0].label + '</div>'), actionBar);
         else
@@ -95,6 +95,6 @@ return declare( ActionBarDialog,
     show: function( ) {
         this.inherited( arguments );
         focus.focus( this.closeButtonNode );
-    },
+    }
 });
 });
