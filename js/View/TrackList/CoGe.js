@@ -693,7 +693,7 @@ define(['dojo/_base/declare',
 
 	// ----------------------------------------------------------------
 
-	_in_notebook(container)
+    _in_notebook: function(container)
 	{
 		return container.parentNode.firstChild.lastChild.innerHTML != 'All Experiments';
 	},
@@ -881,7 +881,7 @@ define(['dojo/_base/declare',
 		var coge = track_config.coge;
 		var container = dojo.create( 'div', {
 			className: 'coge-track',
-			id: track_config.track,
+			id: track_config.track
 		});
 		container.config = track_config;
 		var label = dojo.create('div', {

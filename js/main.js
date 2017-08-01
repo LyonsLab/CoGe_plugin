@@ -431,13 +431,13 @@ return declare( JBrowsePlugin,
 
 	// ----------------------------------------------------------------
 
-	_button(text, onclick) {
+	_button: function(text, onclick) {
 		return '<button data-dojo-type="dijit/form/Button" type="button" onClick="' + onclick + '">' + text + '</button>';
 	},
 
 	// ----------------------------------------------------------------
 
-	build_buttons(ok_onclick, cancel_onclick) {
+	build_buttons: function(ok_onclick, cancel_onclick) {
 		return '<div class="dijitDialogPaneActionBar">' + this._button('OK', ok_onclick) + this._button('Cancel', cancel_onclick) + '</div>';
 	},
 
@@ -1010,7 +1010,7 @@ return declare( JBrowsePlugin,
 			config: config,
 			refSeq: browser.refSeq,
 			type: 'JBrowse/Store/SeqFeature/REST',
-			baseUrl: api_base_url + '/experiment/' + eids.join(','),
+			baseUrl: api_base_url + '/experiment/' + eids.join(',')
 		};
 		this._new_store(store_config, function(store_name) {
 			config = self._clone_config(config);

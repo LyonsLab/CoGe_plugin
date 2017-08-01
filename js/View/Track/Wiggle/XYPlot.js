@@ -176,8 +176,8 @@ var XYPlot = declare( [XYPlotBase], {
 					//pos_color: 'blue',
 					//neg_color: 'red',
 					origin_color: '#888',
-					variance_band_color: 'rgba(0,0,0,0.3)',
-				},
+					variance_band_color: 'rgba(0,0,0,0.3)'
+				}
 			}
 		);
 	},
@@ -445,7 +445,7 @@ var XYPlot = declare( [XYPlotBase], {
 			return name;
 		}
 	},
- 
+
 	// ----------------------------------------------------------------
 
    getGlobalStats: function( successCallback, errorCallback ) {
@@ -775,7 +775,7 @@ var XYPlot = declare( [XYPlotBase], {
 						if (!track._color_dialog) {
 							track._color_dialog = new ColorDialog({
 								title: "Change colors",
-								style: { width: '230px', },
+								style: { width: '230px' },
 								track: track,
 								items: config.coge.experiments || [{value: config.coge.id, label: config.coge.name}],
 								featureColor: dojo.byId(config.track).config.style.featureColor,
@@ -1045,7 +1045,7 @@ function chart(div, first, gap, counts) {
 		axis = d3.svg.axis().orient("bottom").scale(x),
 		width = x.range()[1],
 		height = y.range()[0];
-  
+
 	var g = div.append("svg")
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
