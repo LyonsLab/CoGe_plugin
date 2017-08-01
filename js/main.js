@@ -443,8 +443,8 @@ return declare( JBrowsePlugin,
 
 	// ----------------------------------------------------------------
 
-	build_chromosome_select: function(first, onchange) {
-		var chr = this.browser.refSeq.name;
+	build_chromosome_select: function(first, onchange, chr) {
+		chr = chr || this.browser.refSeq.name;
 		var html = '<select id="coge_ref_seq"';
 		if (onchange)
 			html += ' onchange="' + onchange + '"';
@@ -721,7 +721,7 @@ return declare( JBrowsePlugin,
 	export_dialog: function(track) {
 		this._track = track;
 		var content = '<table align="center" style="width:100%"><tr><td>Chromosome:</td><td>';
-		content += this.build_chromosome_select('All');
+		content += this.build_chromosome_select('All', null, 'All');
 		content += '</td></tr>';
 		if (track.config.coge.transform) {
 			content += '<tr><td>Transform:</td><td style="white-space:nowrap"><input type="radio" name="transform" checked="checked"> None <input id="transform" type="radio" name="transform"> ';
