@@ -353,15 +353,12 @@ return declare( JBrowsePlugin,
 				else {
 					// record names of open tracks and re-open on new refseq
 					var curTracks = this.view.visibleTrackNames();
-
 					this.refSeq = this.allRefs[location.ref];
 					this.clearStores();
-
 					this.view.setLocation( this.refSeq,
 										location.start,
 										location.end );
 					this._updateLocationCookies( location );
-
 					this.showTracks( curTracks );
 				}
 			}));
@@ -1282,7 +1279,7 @@ return declare( JBrowsePlugin,
 		var ref_seq = dojo.byId('coge_ref_seq');
 		var search = this.search_to_string(config.coge.search);
 		var description = 'Results from search: ' + search;
-		var url = api_base_url + '/search/data/' + config.coge.eid + '/' + ref_seq.options[ref_seq.selectedIndex].innerHTML + '?username=' + USER_NAME + '&load_id=' + load_id;
+		var url = api_base_url + '/search/data/' + config.coge.eid + '/' + ref_seq.options[ref_seq.selectedIndex].innerHTML + '?username=' + USER_NAME + '&load_id=' + load_id + '&data_type=' + (to_marker ? 4 : config.coge.data_type);
 		url += '&' + this.search_to_params(config.coge.search, true);
 		var annotions = [
 			{
@@ -1320,9 +1317,12 @@ return declare( JBrowsePlugin,
 		dojo.xhrGet({
 			url: url,
 			load: function(data) {
+				if (data)
+					data = JSON.parse(data);
 				if (data.error) {
 					coge_plugin.error('Save Results', data);
 				} else {
+					var ext = data.file_path.substring(data.file_path.lastIndexOf('.'));
 					var request = {
 						type: 'load_experiment',
 						requester: {
@@ -1503,6 +1503,17 @@ return declare( JBrowsePlugin,
 			string += ', chr=' + search.chr;
 		return string;
 	},
+
+	// ----------------------------------------------------------------
+
+    set_scale: function(range) {
+        var that = this;
+		this.browser.view.tracks.forEach(function(track) {
+            track.config.autoscale = 'global';
+            track.config.coge.range = range;
+            track.changed();
+        });
+    },
 
 	// ----------------------------------------------------------------
 
