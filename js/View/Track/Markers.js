@@ -36,16 +36,20 @@ function(declare, Dialog, ColorDialog, HTMLFeatures) {
             label: 'Change color',
             onClick: function(event) {
                 if (!track._color_dialog) {
+					var feature_color = {};
+					if (config.style.featureCss)
+						feature_color[config.coge.id] = config.style.featureCss.substring(17);
                     track._color_dialog = new ColorDialog({
                         title: "Change colors",
                         style: { width: '230px' },
                         track: track,
                         items: config.coge.experiments || [{value: config.coge.id, label: config.coge.name}],
-                        featureColor: dojo.byId(config.track).config.style.featureColor,
+                        featureColor: feature_color,
                         callback: function(id, color) {
                             var curColor = config.style.featureCss;
                             if (!curColor || curColor.substring(curColor.indexOf(':') + 1).toLowerCase() != color.toLowerCase()) {
                                 config.style.featureCss = 'background-color:' + color;
+								track.updateUserStyles({ featureCss : config.style.featureCss });
                                 track.changed();
                                 coge_track_list.setTrackColor(config.track, id, color);
                             }
