@@ -953,11 +953,23 @@ var XYPlot = declare( [XYPlotBase], {
 					this.hide();
 				};
 				d.show(function(min,max){
+					config.autoscale = 'global';
 					config.coge.range = {min: min, max: max};
 					track.changed();
 				});
 			}
 		});
+        options.push({
+            label: 'Set range for other tracks the same as this one',
+            onClick: function(event) {
+                if (config.autoscale == 'local')
+                    alert('Please turn off Autoscale for this track first.');
+                else if (!config.coge.range)
+                    alert('Please set the Track Range for this track first.');
+                else
+                    coge_plugin.set_scale(config.coge.range);
+            }
+        });
 
 		if (config.coge.type != 'notebook')
 			options.push({
