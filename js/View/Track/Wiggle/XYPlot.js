@@ -59,7 +59,7 @@ var XYPlot = declare( [XYPlotBase], {
 				for( var j = Math.round(fRect.l); j < jEnd; j++ ) {
 					var label = '<div style="background-color:' + color + ';">' +
 						nbspPad(score.toPrecision(6).toString(), 11) +
-						(score2 ? nbspPad(score2.toPrecision(6).toString(), 11) : '') +
+						(score2 ? nbspPad(score2.toPrecision(6).toString(), 11) : ' ') +
 						fLabel+ ' ' + name + '&nbsp;&nbsp;' + f.feature.get('start') + '..' + f.feature.get('end') + '</div>';
 					pixelValues[j] = j in pixelValues ? pixelValues[j] + label : label;
 				}
